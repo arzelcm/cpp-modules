@@ -36,7 +36,7 @@ void Account::displayAccountsInfos(void)
 
 Account::Account(int initial_deposit)
 {
-	Account();
+	this->_accountIndex = this->_nbAccounts++;
 	if (initial_deposit < 0)
 		return ;
 	this->_amount = initial_deposit;
