@@ -12,4 +12,6 @@ public:
 
 	Contact();
 	~Contact();
+
+	void show();
 };

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib> 
 #include "UserInterface.hpp"
 
 UserInterface::~UserInterface(void)
@@ -71,10 +72,11 @@ void UserInterface::search(void)
 
 	choice = -1;
 	this->phoneBook->listContacts();
-	while (choice < 0 || choice > PHONE_BOOK_MAX_CONTACTS)
+	if (this->phoneBook->contacts_size > 0)
 	{
-		promptFun("Choose your fighter: ");
-		choice = 1;
+		while (choice < 0 || choice >= this->phoneBook->contacts_size)
+			choice = atoi(promptFun("Choose your fighter: ").c_str());
+		if (!std::cin.eof())
+			this->phoneBook->contacts[choice].show();
 	}
-
 }

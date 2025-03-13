@@ -11,11 +11,11 @@ PhoneBook::PhoneBook(void)
 void	PhoneBook::addContact(Contact *newContact)
 {
 	Contact *contact;
-	if (this->contacts_size == PHONE_BOOK_MAX_CONTACTS)
-		std::cout << "Updating contact " << this->contacts_size << std::endl;
+	if (this->contacts_size >= PHONE_BOOK_MAX_CONTACTS)
+		std::cout << "Updating contact " << --this->contacts_size << std::endl;
 	else
-		std::cout << "Adding contact " << this->contacts_size++ << std::endl;
-	contact = &this->contacts[this->contacts_size - 1];
+		std::cout << "Adding contact " << this->contacts_size << std::endl;
+	contact = &this->contacts[this->contacts_size++];
 	*contact = *newContact;
 
 }
