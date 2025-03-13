@@ -15,7 +15,7 @@ CYAN = \033[1;36m
 
 #----COMPILER----#
 CC = g++
-CCFLAGS += -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g
+CCFLAGS += -Wall -Werror -Wextra -std=c++98
 
 
 #----DIRS----#
