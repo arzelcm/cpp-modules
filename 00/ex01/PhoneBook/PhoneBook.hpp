@@ -9,6 +9,7 @@ class PhoneBook
 private:
 	Contact contacts[PHONE_BOOK_MAX_CONTACTS];
 	int contacts_size;
+	int last_contact;
 
 public:
 	PhoneBook(void);

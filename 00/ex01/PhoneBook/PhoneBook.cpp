@@ -5,25 +5,32 @@
 
 PhoneBook::PhoneBook(void)
 {
+	this->last_contact = -1;
 	this->contacts_size = 0;
-	return ;
+	return;
 }
 
-void	PhoneBook::addContact(Contact *newContact)
+void PhoneBook::addContact(Contact *newContact)
 {
 	Contact *contact;
-	if (this->contacts_size >= PHONE_BOOK_MAX_CONTACTS)
-		std::cout << "Updating contact " << --this->contacts_size << std::endl;
+	if (this->last_contact == PHONE_BOOK_MAX_CONTACTS - 1)
+		this->last_contact = 0;
 	else
-		std::cout << "Adding contact " << this->contacts_size << std::endl;
-	contact = &this->contacts[this->contacts_size++];
+		this->last_contact++;
+	if (this->contacts_size == PHONE_BOOK_MAX_CONTACTS)
+		std::cout << "Updating contact " << this->last_contact << std::endl;
+	else
+	{
+		this->contacts_size++;
+		std::cout << "Adding contact " << this->last_contact << std::endl;
+	}
+	contact = &this->contacts[this->last_contact];
 	*contact = *newContact;
-
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	return ;
+	return;
 }
 
 static std::string getColValue(std::string value)
@@ -53,22 +60,26 @@ void PhoneBook::listContacts(void)
 		Contact *contact = this->contacts + i;
 		index << i;
 		std::cout << "|" << getColValue(index.str())
-			<< getColValue(contact->getFirstName())
-			<< getColValue(contact->getLastName())
-			<< getColValue(contact->getNickName())
-			<< std::endl;
+				  << getColValue(contact->getFirstName())
+				  << getColValue(contact->getLastName())
+				  << getColValue(contact->getNickName())
+				  << std::endl;
 	}
 }
 
 void PhoneBook::searchContact(void)
 {
-	int	choice;
+	int 		choice;
+	std::string	choice_str;
 
 	choice = -1;
 	if (this->contacts_size > 0)
 	{
-		while (choice < 0 || choice >= this->contacts_size)
-			choice = atoi(UserInterface::promptFun("Choose your fighter: ").c_str());
+		while (choice < 0 || choice >= this->contacts_size || (choice == 0 && choice_str != "0"))
+		{
+			choice_str = UserInterface::promptFun("Choose your fighter: ");
+			choice = atoi(choice_str.c_str());
+		}
 		if (!std::cin.eof())
 			this->contacts[choice].show();
 	}
