@@ -6,13 +6,15 @@
 
 class PhoneBook
 {
-public:
+private:
 	Contact contacts[PHONE_BOOK_MAX_CONTACTS];
-	int		contacts_size;
+	int contacts_size;
 
+public:
 	PhoneBook(void);
 	~PhoneBook(void);
 
 	void addContact(Contact *newContact);
 	void listContacts(void);
+	void searchContact();
 };

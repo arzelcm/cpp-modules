@@ -7,7 +7,7 @@ UserInterface::~UserInterface(void)
 	return;
 }
 
-static std::string promptFun(const char *message)
+std::string UserInterface::promptFun(const char *message)
 {
 	std::string value;
 
@@ -45,7 +45,7 @@ void UserInterface::start(PhoneBook *phoneBook)
 			this->add();
 		else if (cmd == CMD_SEARCH || cmd == "S")
 			this->search();
-		else if (!cmd.empty())
+		else if (!cmd.empty() && cmd != CMD_EXIT)
 			std::cout << "Command \"" << cmd << "\" not found. " << std::endl;
 		std::cout << std::endl;
 	}
@@ -58,25 +58,16 @@ void UserInterface::add(void)
 	std::cout << std::endl
 			  << "Creating contact, introduce details."
 			  << std::endl;
-	contact.firstName = promptFun("First name: ");
-	contact.lastName = promptFun("Last name: ");
-	contact.nickName = promptFun("Nick name: ");
-	contact.phoneNumber = promptFun("Phone number: ");
-	contact.darkestSecret = promptFun("Darkest secret: ");
+	contact.setFirstName(promptFun("First name: "));
+	contact.setLastName(promptFun("Last name: "));
+	contact.setNickName(promptFun("Nick name: "));
+	contact.setPhoneNumber(promptFun("Phone number: "));
+	contact.setDarkestSecret(promptFun("Darkest secret: "));
 	this->phoneBook->addContact(&contact);
 }
 
 void UserInterface::search(void)
 {
-	int	choice;
-
-	choice = -1;
 	this->phoneBook->listContacts();
-	if (this->phoneBook->contacts_size > 0)
-	{
-		while (choice < 0 || choice >= this->phoneBook->contacts_size)
-			choice = atoi(promptFun("Choose your fighter: ").c_str());
-		if (!std::cin.eof())
-			this->phoneBook->contacts[choice].show();
-	}
+	this->phoneBook->searchContact();
 }

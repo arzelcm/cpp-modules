@@ -17,4 +17,5 @@ class UserInterface
 public:
 	~UserInterface(void);
 	void start(PhoneBook *PhoneBook);
+	static std::string promptFun(const char *message);
 };

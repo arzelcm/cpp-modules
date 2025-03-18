@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "PhoneBook.hpp"
+#include "UserInterface/UserInterface.hpp"
 
 PhoneBook::PhoneBook(void)
 {
@@ -49,12 +50,26 @@ void PhoneBook::listContacts(void)
 	for (int i = 0; i < this->contacts_size; i++)
 	{
 		std::stringstream index;
-		const Contact *contact = this->contacts + i;
+		Contact *contact = this->contacts + i;
 		index << i;
 		std::cout << "|" << getColValue(index.str())
-			<< getColValue(contact->firstName)
-			<< getColValue(contact->lastName)
-			<< getColValue(contact->nickName)
+			<< getColValue(contact->getFirstName())
+			<< getColValue(contact->getLastName())
+			<< getColValue(contact->getNickName())
 			<< std::endl;
+	}
+}
+
+void PhoneBook::searchContact(void)
+{
+	int	choice;
+
+	choice = -1;
+	if (this->contacts_size > 0)
+	{
+		while (choice < 0 || choice >= this->contacts_size)
+			choice = atoi(UserInterface::promptFun("Choose your fighter: ").c_str());
+		if (!std::cin.eof())
+			this->contacts[choice].show();
 	}
 }

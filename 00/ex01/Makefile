@@ -1,4 +1,4 @@
-NAME = phonebook
+NAME = phonebookapp
 
 #----COLORS----#
 DEF_COLOR = \033[0m
@@ -14,7 +14,7 @@ CYAN = \033[1;36m
 
 
 #----COMPILER----#
-CC = g++
+CC = c++
 CCFLAGS += -Wall -Werror -Wextra -std=c++98
 
 

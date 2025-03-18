@@ -14,7 +14,7 @@ CYAN = \033[1;36m
 
 
 #----COMPILER----#
-CC = g++
+CC = c++
 CCFLAGS += -Wall -Werror -Wextra -std=c++98
 
 
