@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 	int complainI;
 	std::string *complains;
 
+	complainI = 0;
 	if (argc != 2)
 	{
 		std::cout << "Illegal use. Must exec with 1 parameter." << std::endl;
