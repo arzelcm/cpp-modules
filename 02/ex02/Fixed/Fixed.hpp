@@ -24,6 +24,8 @@ public:
 	Fixed operator/(const Fixed &fixed);
 	Fixed &operator++(void);
 	Fixed operator++(int);
+	Fixed &operator--(void);
+	Fixed operator--(int);
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 	float toFloat(void) const;

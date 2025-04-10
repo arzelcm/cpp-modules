@@ -97,10 +97,24 @@ Fixed &Fixed::operator++(void)
 
 Fixed Fixed::operator++(int)
 {
+	Fixed tmp = *this;
+	this->_value = this->_value + 1;
+	return tmp;
+}
+
+Fixed &Fixed::operator--(void)
+{
+	this->_value--;
+	return *this;
+}
+
+Fixed Fixed::operator--(int)
+{
 	Fixed f = *this;
-	this->_value++;
+	this->_value--;
 	return f;
 }
+
 
 int Fixed::getRawBits(void) const
 {
