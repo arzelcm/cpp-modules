@@ -1,0 +1,79 @@
+#include "Bureaucrat.hpp"
+#include <iostream>
+
+Bureaucrat::Bureaucrat() : _name("Anon")
+{
+	this->setGrade(150);
+}
+
+Bureaucrat::Bureaucrat(std::string name) : _name(name)
+{
+	this->setGrade(150);
+}
+
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
+{
+	this->setGrade(grade);
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &cpy): _name(cpy._name)
+{
+	*this = cpy;
+}
+
+int Bureaucrat::getGrade() const
+{
+	return this->_grade;
+}
+
+void Bureaucrat::setGrade(int grade)
+{
+	if (grade < B_GRADE_MAX)
+		throw GradeTooHighException();
+	else if (grade > B_GRADE_MIN)
+		throw GradeTooLowException();
+	else
+		this->_grade = grade;
+}
+
+std::string Bureaucrat::getName() const
+{
+	return this->_name;
+}
+
+void Bureaucrat::incrementGrade()
+{
+	this->setGrade(this->_grade - 1);
+}
+
+void Bureaucrat::decrementGrade()
+{
+	this->setGrade(this->_grade + 1);
+}
+
+void Bureaucrat::print()
+{
+	std::cout << *this << std::endl;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &cpy)
+{
+	if (this == &cpy)
+		return *this;
+	else
+	{
+		this->_grade = cpy._grade;
+		return *this;
+	}
+}
+
+Bureaucrat::~Bureaucrat()
+{
+	// std::cout << "Bureaucrat destructor called" << std::endl;
+}
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureau)
+{
+	os << bureau.getName() << " bureaucrat grade " << bureau.getGrade() << ".";
+	return os;
+}
