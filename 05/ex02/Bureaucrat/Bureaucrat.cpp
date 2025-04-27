@@ -69,6 +69,19 @@ void Bureaucrat::signForm(AForm &form) const
 	}
 }
 
+void Bureaucrat::executeForm(AForm const &form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << *this << " executed " << form << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << *this << " couldn't execute " << form << " because " << e.what() << std::endl;
+	}
+}
+
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &cpy)
 {
 	if (this == &cpy)

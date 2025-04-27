@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Bureaucrat/Bureaucrat.hpp"
 #include "Form/ShrubberyCreationForm/ShrubberyCreationForm.hpp"
+#include "Form/RobotomyRequestForm/RobotomyRequestForm.hpp"
+#include "Form/PresidentialPardonForm/PresidentialPardonForm.hpp"
 
 void trySign(Bureaucrat &buro, AForm *form)
 {
@@ -22,8 +24,7 @@ void tryExec(Bureaucrat &buro, AForm *form)
 			  << "< " << buro.getName() << " tries to execute " << form->getName() << " >" << std::endl;
 	try
 	{
-		form->execute(buro);
-		// buro.execForm(*form);
+		buro.executeForm(*form);
 	}
 	catch (std::exception &e)
 	{
@@ -33,25 +34,18 @@ void tryExec(Bureaucrat &buro, AForm *form)
 
 int main(void)
 {
-	Bureaucrat daenerys("Daenerys", 1);
+	Bureaucrat daenerys("Daenerys", 150);
 	ShrubberyCreationForm form("home");
-	std::cout << daenerys << std::endl
+	RobotomyRequestForm formRobotomy("target");
+	PresidentialPardonForm formPresidency("target");
+	std::cout << "< Initialization >" << std::endl
+			  << daenerys << std::endl
 			  << form << std::endl
+			  << formRobotomy << std::endl
+			  << formPresidency << std::endl
 			  << std::endl;
 	tryExec(daenerys, &form);
-	// std::cout << std::endl
-	// 		  << "< Try instantiate form out of bounds  >" << std::endl;
-	// try
-	// {
-	// 	Form model1("Model1", B_GRADE_MAX - 1, 23);
-	// }
-	// catch (const std::exception &e)
-	// {
-	// 	std::cerr << "Error: " << e.what() << std::endl;
-	// }
-
-	// trySign(daenerys, model23);
-	// trySign(daenerys, model25);
-	// trySign(daenerys, model26);
+	tryExec(daenerys, &formRobotomy);
+	tryExec(daenerys, &formPresidency);
 	return 0;
 }

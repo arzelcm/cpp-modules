@@ -1,6 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include <iostream>
 #include <fstream>
+
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137)
 {
 }
@@ -12,6 +13,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubb
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &cpy) : AForm(cpy)
 {
+}
+
+std::string ShrubberyCreationForm::getTarget() const
+{
+	return this->_target;
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
@@ -28,7 +34,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 			"_- -   | | _- _\n"
 			"  _ -  | |   -_\n"
 			"      // \\\\\n";
-	;
 	file.close();
 	std::cout << "Created " << completeTarget << " in the working directory." << std::endl;
 }

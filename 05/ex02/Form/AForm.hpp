@@ -28,11 +28,11 @@ public:
 	virtual ~AForm();
 	class GradeTooHighException : public std::exception
 	{
-		const char *what() const throw() { return "grade too high."; };
+		const char *what() const throw() { return "grade is too high."; };
 	};
 	class GradeTooLowException : public std::exception
 	{
-		const char *what() const throw() { return "grade too low."; };
+		const char *what() const throw() { return "grade is too low."; };
 	};
 };
 

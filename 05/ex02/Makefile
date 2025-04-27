@@ -24,10 +24,10 @@ SRC = src/
 INCLUDES = -I./
 EXPORTS = exports/
 
-vpath %.cpp  Bureaucrat Form Form/ShrubberyCreationForm
+vpath %.cpp  Bureaucrat Form Form/ShrubberyCreationForm Form/RobotomyRequestForm Form/PresidentialPardonForm
 
 #----SHARED----#
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJS = $(SRCS:%.cpp=$(BIN_DIR)%.o)
 DEPS = $(OBJS:%.o=%.d)
