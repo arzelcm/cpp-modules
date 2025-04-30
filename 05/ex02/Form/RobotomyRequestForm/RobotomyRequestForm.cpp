@@ -1,5 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 #include <iostream>
+#include <stdlib.h>
 
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45)
 {
@@ -23,7 +24,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
 	this->checkPerms(executor, this->getExecGrade());
 	std::cout << this->getName() << ": brrrrrrZZZZZZzzzzzzz... whirrrr... clank clank!" << std::endl;
-	std::srand(std::time(nullptr));
+	std::srand(time(NULL));
 	if (std::rand() % 2)
 		std::cout << this->_target << " has been robotomized successfully!" << std::endl;
 	else
