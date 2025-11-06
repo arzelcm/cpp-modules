@@ -18,5 +18,9 @@ int main(void)
         std::string arr[] = {"H", "o", "l", "a"};
         ::iter<>(arr, 4, printTempl<const std::string>);
     }
+    {
+        std::string arr[] = {"H", "o", "l", "s"};
+        ::iter<>(arr, 4, printTempl<std::string>);
+    }
     return 0;
 }
