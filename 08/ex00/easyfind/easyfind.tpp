@@ -1,4 +1,3 @@
-#pragma once
 #include "easyfind.hpp"
 #include <exception>
 #include <iostream>
