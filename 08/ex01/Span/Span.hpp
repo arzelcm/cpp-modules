@@ -10,10 +10,15 @@ private:
 public:
 	Span();
 	Span(unsigned int);
-	Span(Span &);
-	void addNumber(int); // Throws
-	int shortestSpan();	 // Throws
-	int longestSpan();	 // Throws
-	Span &operator=(Span &);
+	Span(const Span &);
+	void addNumber(const int); // Throws
+	template <typename InputIt>
+	void addNumber(InputIt begin, InputIt end); // Throws
+	int shortestSpan() const;					// Throws
+	int longestSpan() const;					// Throws
+	void listNumbers() const;
+	Span &operator=(const Span &);
 	~Span();
 };
+
+#include "Span.tpp"
